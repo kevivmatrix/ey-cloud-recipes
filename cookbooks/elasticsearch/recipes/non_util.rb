@@ -5,13 +5,14 @@
 # Credit goes to GoTime for their original recipe ( http://cookbooks.opscode.com/cookbooks/elasticsearch )
 
 version = node[:elasticsearch_version]
-download_url = "https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/#{version}/elasticsearch-#{version}.zip"
+# download_url = "https://download.elastic.co/elasticsearch/release/org/elasticsearch/distribution/zip/elasticsearch/#{version}/elasticsearch-#{version}.zip"
+download_url = source "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-#{node[:elasticsearch_version]}.zip"
 if ['solo','app_master'].include?(node[:instance_role])
   Chef::Log.info "Downloading Elasticsearch v#{node[:elasticsearch_version]} checksum #{node[:elasticsearch_checksum]}"
   remote_file "/tmp/elasticsearch-#{version}.zip" do
     source download_url
     mode "0644"
-    checksum node[:elasticsearch_checksum]
+    # checksum node[:elasticsearch_checksum]
     not_if { File.exists?("/tmp/elasticsearch-#{version}.zip") }
   end
 
