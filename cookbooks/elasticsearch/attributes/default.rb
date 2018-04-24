@@ -1,4 +1,4 @@
-default[:elasticsearch_version] = "2.4.0"
+default[:elasticsearch_version] = "5.6.8"
 default[:elasticsearch_checksum] = "e5de25e5e0172fd64f27c4b2f8c48b240a4270d3"
 default[:elasticsearch_clustername] = "#{node[:environment][:name]}"
 default[:elasticsearch_home] = "/data/elasticsearch"

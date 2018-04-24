@@ -21,9 +21,10 @@ if ['util'].include?(node[:instance_role])
   if node['name'].include?("elasticsearch_")
     Chef::Log.info "Downloading Elasticsearch v#{node[:elasticsearch_version]} checksum #{node[:elasticsearch_checksum]}"
     remote_file "/tmp/elasticsearch-#{node[:elasticsearch_version]}.zip" do
-      source "https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-#{node[:elasticsearch_version]}.zip"
+      # source "https://download.elastic.co/elasticsearch/elasticsearch/elasticsearch-#{node[:elasticsearch_version]}.zip"
+      source "https://artifacts.elastic.co/downloads/elasticsearch/elasticsearch-#{node[:elasticsearch_version]}.zip"
       mode "0644"
-      checksum node[:elasticsearch_checksum]
+      # checksum node[:elasticsearch_checksum]
       not_if { File.exists?("/tmp/elasticsearch-#{node[:elasticsearch_version]}.zip") }
     end
 
